@@ -13,6 +13,7 @@ import javax.mail.internet.MimeMessage;
 
 public class Security {
 
+    //method to send email
     public static void sendAcceptedMail(Student student){
         Properties properties = new Properties();
         properties.put("mail.smtp.host","smtp.gmail.com");
