@@ -2,6 +2,8 @@ package com.project.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "PrivateConsultation", schema = "edu")
 public class PrivateConsultation {
@@ -15,6 +17,8 @@ public class PrivateConsultation {
     private short status;
     @Column(name = "Answer")
     private String answer;
+    @Column(name = "Date")
+    private Date date;
     @Column(name = "Id_Student")
     private String id_Student;
     @Column(name = "Id_Professor")
@@ -50,6 +54,14 @@ public class PrivateConsultation {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getId_Student() {
