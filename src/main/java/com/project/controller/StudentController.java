@@ -31,6 +31,17 @@ public class StudentController {
         }
     }
 
+    @GetMapping("/getUnacceptedStudents")
+    public List<Student> getUnacceptedStudents(){
+        try{
+            return studentService.getStudentsByActive();
+        } catch (SQLException e) {
+            return (List<Student>) ResponseEntity.
+                    badRequest().
+                    body("A problem occurred when consulting students");
+        }
+    }
+
     @PostMapping("/postStudent")
     public ResponseEntity<?> postStudent(@RequestBody Student student){
         JSONObject jsonResponse = new JSONObject();

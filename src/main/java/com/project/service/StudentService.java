@@ -21,6 +21,11 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    public List<Student> getStudentsByActive() throws SQLException{
+        short active = 0;
+        return studentRepository.getStudentsByActive(active);
+    }
+
     public void postStudent(Student student) throws SQLException{
         Optional<Student> optionalStudent = studentRepository.findById(student.getId());
         if (optionalStudent.isPresent()){
