@@ -34,7 +34,8 @@ public class ProfessorController {
 
 
     @PostMapping("/postProfessor")
-    public ResponseEntity<?> postStudent(@RequestBody Professor professor){
+    public ResponseEntity<?> postProfessor(@RequestBody Professor professor){
+
         JSONObject jsonResponse = new JSONObject();
 
         try{
@@ -51,7 +52,7 @@ public class ProfessorController {
     }
 
     @GetMapping("/deleteProfessor/{id}")
-    public ResponseEntity<?> deleteStudent(@PathVariable (value = "id") String id){
+    public ResponseEntity<?> deleteProfessor(@PathVariable (value = "id") String id){
 
         JSONObject jsonResponse = new JSONObject();
 
@@ -69,7 +70,7 @@ public class ProfessorController {
     }
 
     @GetMapping("/getProfessor/{id}")
-    public ResponseEntity<?> getStudent(@PathVariable (value = "id") String id) {
+    public ResponseEntity<?> getProfessor(@PathVariable (value = "id") String id) {
         try {
             Professor professor = professorService.getProfessor(id);
             return new ResponseEntity<>(professor, HttpStatus.OK);
