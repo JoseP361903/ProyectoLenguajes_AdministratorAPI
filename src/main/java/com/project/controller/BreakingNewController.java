@@ -47,7 +47,7 @@ public class BreakingNewController {
         }
     }
 
-    @GetMapping("/deleteBreakingNew/{id}")
+    @DeleteMapping("/deleteBreakingNew/{id}")
     public ResponseEntity<?> deleteBreakingNew(@PathVariable (value = "id") int id){
 
         JSONObject jsonResponse = new JSONObject();

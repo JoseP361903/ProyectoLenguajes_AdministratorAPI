@@ -51,7 +51,7 @@ public class ProfessorController {
         }
     }
 
-    @GetMapping("/deleteProfessor/{id}")
+    @DeleteMapping("/deleteProfessor/{id}")
     public ResponseEntity<?> deleteProfessor(@PathVariable (value = "id") String id){
 
         JSONObject jsonResponse = new JSONObject();

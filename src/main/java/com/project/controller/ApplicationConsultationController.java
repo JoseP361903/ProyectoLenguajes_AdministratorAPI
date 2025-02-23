@@ -47,7 +47,7 @@ public class ApplicationConsultationController {
         }
     }
 
-    @GetMapping("/deleteApplicationConsultation/{id}")
+    @DeleteMapping("/deleteApplicationConsultation/{id}")
     public ResponseEntity<?> deleteApplicationConsultation(@PathVariable (value = "id") int id){
 
         JSONObject jsonResponse = new JSONObject();

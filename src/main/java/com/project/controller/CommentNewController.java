@@ -48,7 +48,7 @@ public class CommentNewController {
         }
     }
 
-    @GetMapping("/deleteCommentNew/{id}")
+    @DeleteMapping("/deleteCommentNew/{id}")
     public ResponseEntity<?> deleteCommentNew(@PathVariable (value = "id") int id){
 
         JSONObject jsonResponse = new JSONObject();

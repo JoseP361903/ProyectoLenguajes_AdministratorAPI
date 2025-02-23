@@ -59,7 +59,7 @@ public class StudentController {
         }
     }
 
-    @GetMapping("/deleteStudent/{id}")
+    @DeleteMapping("/deleteStudent/{id}")
     public ResponseEntity<?> deleteStudent(@PathVariable (value = "id") String id){
 
         JSONObject jsonResponse = new JSONObject();

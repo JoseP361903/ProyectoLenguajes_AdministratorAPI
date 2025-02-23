@@ -23,16 +23,9 @@ public class ProfessorService {
     }
 
     public void postProfessor(Professor professor) throws SQLException{
-        Optional<Professor> optionalProfessor = professorRepository.findById(professor.getId());
-        if (optionalProfessor.isPresent()){
-            //Validate change in active, notify student
-            Professor professorForMail = optionalProfessor.get();
-            if(professorForMail.getActive() == 0 && professor.getActive() == 1){
-                Security security = new Security();
-                security.sendAcceptedMail(professor);
-            }
-        }
-        professorRepository.save(professor);
+       Security security = new Security();
+       security.sendAcceptedMail(professor);
+       professorRepository.save(professor);
     }
 
     public Professor getProfessor(String id) throws SQLException{
