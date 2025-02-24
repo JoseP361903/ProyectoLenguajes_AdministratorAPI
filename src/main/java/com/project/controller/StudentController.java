@@ -49,7 +49,7 @@ public class StudentController {
         try{
             studentService.postStudent(student);
             jsonResponse.put("message", "Student added successfully");
-            jsonResponse.put("isSucess", true);
+            jsonResponse.put("isSuccess", true);
             return new ResponseEntity<>(jsonResponse.toString(), HttpStatus.OK);
         }catch(SQLException sqEx){
             return ResponseEntity.

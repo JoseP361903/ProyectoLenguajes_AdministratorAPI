@@ -32,8 +32,7 @@ public class StudentService {
             //Validate change in active, notify student
             Student studentForMail = optionalStudent.get();
             if(studentForMail.getActive() == 0 && student.getActive() == 1){
-                Security security = new Security();
-                security.sendAcceptedMail(student);
+                Security.sendAcceptedMail(student);
             }
         }
         studentRepository.save(student);
