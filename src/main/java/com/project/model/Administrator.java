@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 public class Administrator {
 
     @Id
+    @Column(name = "IdAdministrator")
     private String Id;
     @Column(name = "Password")
     private String password;

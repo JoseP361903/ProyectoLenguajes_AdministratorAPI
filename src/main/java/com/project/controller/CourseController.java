@@ -23,7 +23,9 @@ public class CourseController {
     @GetMapping("/getAllCourse")
     public List<Course> getAllCourse(){
         try {
-            return courseService.getAllCourse();
+            List<Course> courses = courseService.getAllCourse();
+
+            return courses;
         }catch(SQLException sqEx){
             return (List<Course>) ResponseEntity.
                     badRequest().
@@ -48,25 +50,24 @@ public class CourseController {
     }
 
     @DeleteMapping("/deleteCourse/{id}")
-    public ResponseEntity<?> deleteCourse(@PathVariable (value = "id") String id){
-
+    public ResponseEntity<?> deleteCourse(@PathVariable(value = "id") String id) {
         JSONObject jsonResponse = new JSONObject();
-
-        try{
+        try {
             courseService.deleteCourse(id);
             jsonResponse.put("message", "Course deleted successfully");
-            jsonResponse.put("isSucess", true);
+            jsonResponse.put("isSuccess", true);
             return new ResponseEntity<>(jsonResponse.toString(), HttpStatus.OK);
-        }catch(SQLException sqEx){
-            return ResponseEntity.
-                    badRequest().
-                    body("Student could not be removed from the system");
-
+        } catch (SQLException sqEx) {
+            jsonResponse.put("message", "Error deleting course: " + sqEx.getMessage());
+            jsonResponse.put("isSuccess", false);
+            return new ResponseEntity<>(jsonResponse.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+
+
     @GetMapping("/getCourse/{id}")
-    public ResponseEntity<?> getStudent(@PathVariable (value = "id") String id){
+    public ResponseEntity<?> getCurse(@PathVariable (value = "id") String id){
         try{
             Course course = courseService.getCourse(id);
             return  new ResponseEntity<>(course, HttpStatus.OK);
@@ -75,5 +76,6 @@ public class CourseController {
         }
 
     }
+
 
 }

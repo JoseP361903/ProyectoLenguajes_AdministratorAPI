@@ -79,7 +79,8 @@ public class CommentCourseController {
     @GetMapping("/getCommentByCourseAcronym/{id}")
     public List<CommentCourse> getCommentByCourseAcronym(@PathVariable (value = "id") String acronym){
         try {
-            return commentCourseService.getCommentByCourseAcronym(acronym);
+            List<CommentCourse> commentCourses = commentCourseService.getCommentByCourseAcronym(acronym);
+            return commentCourses;
         }catch(SQLException sqEx){
             return (List<CommentCourse>) ResponseEntity.
                     badRequest().
