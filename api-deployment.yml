@@ -1,0 +1,42 @@
+trigger:
+- main
+
+pool:
+  name: my_agent_pool
+
+steps:
+- task: JavaToolInstaller@1
+  displayName: "Configurar Java"
+  inputs:
+    versionSpec: '17'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'LocalDirectory'
+    jdkFile: 'C:\Program Files\Java\jdk-17'
+    cleanDestinationDirectory: true
+- task: Maven@3
+  displayName: 'Compilar y empaquetar API'
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'Path'  
+    jdkDirectory: 'C:\Program Files\Java\jdk-17'  
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'clean package'
+    mavenVersionOption: 'Default'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publicar archivo .jar'
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/target/*.jar'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+- task: AzureRmWebAppDeployment@5
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(9afab68a-66ca-4dab-a1ad-c92b01fe176c)'
+    appType: 'webApp'
+    WebAppName: 'ApiAdmin'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/drop/*.zip'
